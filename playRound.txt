@@ -1,0 +1,36 @@
+function playRound (humanChoice, computerChoice) {
+
+    //Human chooses rock
+    if (humanChoice == "ROCK" &&  computerChoice == "ROCK") {
+        console.log("It's a draw! Rock can't beat Rock");
+    }
+    if (humanChoice == "ROCK" &&  computerChoice == "PAPER") {
+        console.log("You lose! Paper beats Rock")
+    }
+    if (humanChoice == "ROCK" &&  computerChoice == "SCISSORS") {
+       console.log("You win! Rock beats Scissors") 
+    }
+
+    //Human chooses paper
+    if (humanChoice == "PAPER" &&  computerChoice == "ROCK") {
+        console.log("You win! Paper beats rock!")
+    }
+    if (humanChoice == "PAPER" &&  computerChoice == "PAPER") {
+        console.log("It's a draw! Paper can't beat Paper")
+    }
+    if (humanChoice == "PAPER" &&  computerChoice == "SCISSORS") {
+       console.log("You lose! Scissors beats Paper") 
+    }
+
+    //Human chooses scissors
+    if (humanChoice == "SCISSORS" &&  computerChoice == "ROCK") {
+        console.log("You lose! Rock beats Scissors")
+    }
+    if (humanChoice == "SCISSORS" &&  computerChoice == "PAPER") {
+        console.log("You win! Scissors beats Paper")
+    }
+    if (humanChoice == "SCISSORS" &&  computerChoice == "SCISSORS") {
+       console.log("It's a draw! Scissors can't beat Scissors") 
+    }
+
+}
