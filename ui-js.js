@@ -1,3 +1,11 @@
+// VARIABLES
+
+    let humanScore = 0;
+    let computerScore = 0;
+    let drawScore = 0;
+    let matchCounter = 0;
+
+
 // FUNCTIONS
 
 //Computer Choice function - Chooses a random option
@@ -23,7 +31,6 @@ function getComputerChoice (){
 function playRound (humanChoice, computerChoice) {
     // 0 = lose , 1= win, 2= draw
     const logContent = document.querySelector("#logDiv") ;
-    console.log(logContent);
     const logContainer = document.createElement("div");
 
     //Human chooses rock
@@ -116,14 +123,63 @@ function playRound (humanChoice, computerChoice) {
 
     }
 
+//Round result function - Receives a escore based on function return
+function roundResult(result) {
+    const scoreContent = document.querySelector("#scoreDiv") ;
+    const scoreContainer = document.createElement("div");
+    
+
+    if (result == 0) {
+        computerScore += 1;
+        matchCounter += 1;
+    }
+    if (result == 1){
+        humanScore += 1;
+        matchCounter += 1;
+    }
+    if (result == 2) {
+        drawScore += 1;
+        matchCounter += 1;
+    }
+
+    
+    scoreContainer.textContent = `YOUR SCORE: ${humanScore} | COMPUTER SCORE: ${computerScore} | DRAWED MATCHES: ${drawScore} # NUMBER OF MATCHES: ${matchCounter}` ;
+    scoreContent.replaceChildren(scoreContainer) ;
+
+
+}
+
+//Check amount of matches function - Checks for 5 matches an ends the game
+function endMatch(humanScore,computerScore,matchCounter){
+    const scoreContent = document.querySelector("#mainDiv") ;
+    const scoreContainer = document.createElement("div");
+
+    if (matchCounter == 5) {
+        if (humanScore > computerScore) {
+            
+            scoreContainer.textContent = `YOU WON! ---- YOUR SCORE: ${humanScore} | COMPUTER SCORE: ${computerScore} | DRAWED MATCHES: ${drawScore} # NUMBER OF MATCHES: ${matchCounter}` ;
+            scoreContent.replaceChildren(scoreContainer) ;
+        } 
+        if (computerScore > humanScore) {
+            scoreContainer.textContent = `YOU LOOSE! ---- YOUR SCORE: ${humanScore} | COMPUTER SCORE: ${computerScore} | DRAWED MATCHES: ${drawScore} # NUMBER OF MATCHES: ${matchCounter}` ;
+            scoreContent.replaceChildren(scoreContainer) ;
+        }
+        if (computerScore == humanScore) {
+            scoreContainer.textContent = `ITS A DRAW! ---- YOUR SCORE: ${humanScore} | COMPUTER SCORE: ${computerScore} | DRAWED MATCHES: ${drawScore} # NUMBER OF MATCHES: ${matchCounter}` ;
+            scoreContent.replaceChildren(scoreContainer) ;
+        }
+    }
+}
 //REFACTOR CODE FOR UI VERSION
 
 const rockBtn = document.querySelector("#rockBtn") ;
-rockBtn.addEventListener("click", () => { playRound("ROCK", getComputerChoice());}) ;
+rockBtn.addEventListener("click", () => { roundResult(playRound("ROCK", getComputerChoice()));}) ;
+rockBtn.addEventListener("click", () => { endMatch(humanScore,computerScore,matchCounter);})
 
 const paperBtn = document.querySelector("#paperBtn") ;
-paperBtn.addEventListener("click", () => { playRound("PAPER", getComputerChoice()) ;}) ;
+paperBtn.addEventListener("click", () => { roundResult(playRound("PAPER", getComputerChoice())) ;}) ;
+paperBtn.addEventListener("click", () => { endMatch(humanScore,computerScore,matchCounter);})
 
-const scissorBtn = document.querySelector("#scissorBtn") ;
-scissorBtn.addEventListener("click", () => { playRound("SCISSORS", getComputerChoice()) ;}) ;
-
+const scissorBtn = document.querySelector("#scissorBtn") ;!
+scissorBtn.addEventListener("click", () => { roundResult(playRound("SCISSORS", getComputerChoice()));}) ;
+scissorBtn.addEventListener("click", () => { endMatch(humanScore,computerScore,matchCounter);})
