@@ -27,6 +27,7 @@ function getComputerChoice (){
 
 }
 
+
 function getHumanChoice (){
     let choice = prompt("Select between: Rock, Paper and Scissors.","Enter your choice: ");
     return choice.toUpperCase();
@@ -186,4 +187,6 @@ function playGame() {
 //console.log("Human Choice: ", humanSelection);
 //console.log("Computer Choice: ", computerSelection);
 
-playGame();
+//playGame();
+
+
